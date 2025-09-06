@@ -1,7 +1,12 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
+import styled from 'styled-components'
+import { theme } from '../../theme'
 
-export default function Logo({ className, onClick }) {
+type LogoProps = {
+  className?: string
+  onClick?: () => React.MouseEventHandler<HTMLDivElement>
+}
+
+export default function Logo({ className, onClick }: LogoProps) {
   return (
     <LogoStyled className={className} onClick={onClick}>
       <h1>CRAZEE</h1>
@@ -24,7 +29,7 @@ const LogoStyled = styled.div`
     font-weight: ${theme.fonts.weights.bold};
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    font-family: "Amatic SC", cursive;
+    font-family: 'Amatic SC', cursive;
   }
 
   img {
