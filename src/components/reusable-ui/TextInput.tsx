@@ -1,9 +1,15 @@
-import React from "react"
-import styled, { css } from "styled-components"
-import { theme } from "../../theme"
+import React, { ComponentPropsWithRef, JSX } from 'react'
+import styled, { css } from 'styled-components'
+import { theme } from '../../theme/theme'
 
-const TextInput = React.forwardRef(
-  ({ onChange, Icon, className, version = "normal", ...extraProps }, ref) => {
+type TextInputVersion = keyof typeof extraStyle
+type TextInputProps = ComponentPropsWithRef<'input'> & {
+  Icon: JSX.Element
+  version?: TextInputVersion
+}
+
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+  ({ onChange, Icon, className, version = 'normal', ...extraProps }, ref) => {
     return (
       <TextInputStyled className={className} version={version}>
         <div className="icon">{Icon && Icon}</div>
@@ -14,7 +20,7 @@ const TextInput = React.forwardRef(
 )
 
 export default TextInput
-const TextInputStyled = styled.div`
+const TextInputStyled = styled.div<{ version: TextInputVersion }>`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
@@ -36,9 +42,9 @@ const TextInputStyled = styled.div`
   }
 
   /* ${(props) => {
-    if (props.version === "normal") return extraStyleNormal
-    if (props.version === "minimalist") return extraStyleMinimalist
-  }} */
+    if (props.version === 'normal') return extraStyleNormal
+    if (props.version === 'minimalist') return extraStyleMinimalist
+  }}  */
 
   ${({ version }) => extraStyle[version]}
 `

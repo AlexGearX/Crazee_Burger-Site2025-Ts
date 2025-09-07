@@ -1,19 +1,19 @@
-import styled from "styled-components"
-import { useOrderContext } from "../../../../../../context/OrderContext"
-import { theme } from "../../../../../../theme"
-import { formatPrice } from "../../../../../../utils/maths"
-import Card from "../../../../../reusable-ui/Card"
-import EmptyMenuAdmin from "./EmptyMenuAdmin"
-import EmptyMenuClient from "./EmptyMenuClient"
-import { checkIfProductIsClicked } from "./helper"
-import { EMPTY_PRODUCT, IMAGE_COMING_SOON, IMAGE_NO_STOCK } from "../../../../../../enums/product"
-import { isEmpty } from "../../../../../../utils/array"
-import Loader from "./Loader"
-import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { menuAnimation } from "../../../../../../theme/animations"
-import { convertStringToBoolean } from "../../../../../../utils/string"
-import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated"
-import { useParams } from "react-router-dom"
+import styled from 'styled-components'
+import { useOrderContext } from '../../../../../../context/OrderContext'
+import { theme } from '../../../../../../theme/theme'
+import { formatPrice } from '../../../../../../utils/maths'
+import Card from '../../../../../reusable-ui/Card'
+import EmptyMenuAdmin from './EmptyMenuAdmin'
+import EmptyMenuClient from './EmptyMenuClient'
+import { checkIfProductIsClicked } from './helper'
+import { EMPTY_PRODUCT, IMAGE_COMING_SOON, IMAGE_NO_STOCK } from '../../../../../../enums/product'
+import { isEmpty } from '../../../../../../utils/array'
+import Loader from './Loader'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { menuAnimation } from '../../../../../../theme/animations'
+import { convertStringToBoolean } from '../../../../../../utils/string'
+import RibbonAnimated, { ribbonAnimation } from './RibbonAnimated'
+import { useParams } from 'react-router-dom'
 
 export default function Menu() {
   const {
@@ -44,7 +44,7 @@ export default function Menu() {
     handleAddToBasket(idProductToAdd, username)
   }
 
-  let cardContainerClassName = isModeAdmin ? "card-container is-hoverable" : "card-container"
+  let cardContainerClassName = isModeAdmin ? 'card-container is-hoverable' : 'card-container'
 
   // affichage
   if (menu === undefined) return <Loader />
@@ -58,7 +58,7 @@ export default function Menu() {
     <TransitionGroup component={MenuStyled} className="menu">
       {menu.map(({ id, title, imageSource, price, isAvailable, isPublicised }) => {
         return (
-          <CSSTransition classNames={"menu-animation"} key={id} timeout={300}>
+          <CSSTransition classNames={'menu-animation'} key={id} timeout={300}>
             <div className={cardContainerClassName}>
               {convertStringToBoolean(isPublicised) && <RibbonAnimated />}
               <Card

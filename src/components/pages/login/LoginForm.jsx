@@ -1,17 +1,17 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import styled from "styled-components"
-import { IoChevronForward } from "react-icons/io5"
-import { BsPersonCircle } from "react-icons/bs"
-import TextInput from "../../reusable-ui/TextInput"
-import Button from "../../reusable-ui/Button"
-import { theme } from "../../../theme"
-import { authenticateUser } from "../../../api/user"
-import Welcome from "./Welcome"
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import { IoChevronForward } from 'react-icons/io5'
+import { BsPersonCircle } from 'react-icons/bs'
+import TextInput from '../../reusable-ui/TextInput'
+import Button from '../../reusable-ui/Button'
+import { theme } from '../../../theme/theme'
+import { authenticateUser } from '../../../api/user'
+import Welcome from './Welcome'
 
 export default function LoginForm() {
   // state
-  const [username, setUsername] = useState("Bob")
+  const [username, setUsername] = useState('Bob')
   const navigate = useNavigate()
 
   // comportements
@@ -20,7 +20,7 @@ export default function LoginForm() {
 
     const userReceived = await authenticateUser(username)
 
-    setUsername("")
+    setUsername('')
     navigate(`order/${userReceived.username}`)
   }
 
@@ -36,14 +36,14 @@ export default function LoginForm() {
         <TextInput
           value={username}
           onChange={handleChange}
-          placeholder={"Entrez votre prénom"}
+          placeholder={'Entrez votre prénom'}
           required
           Icon={<BsPersonCircle />}
           className="input-login"
           version="normal"
         />
 
-        <Button label={"Accéder à mon espace"} Icon={<IoChevronForward />} />
+        <Button label={'Accéder à mon espace'} Icon={<IoChevronForward />} />
       </div>
     </LoginFormStyled>
   )
@@ -56,7 +56,7 @@ const LoginFormStyled = styled.form`
   margin: 0px auto;
   padding: 40px ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.round};
-  font-family: "Amatic SC", cursive;
+  font-family: 'Amatic SC', cursive;
 
   hr {
     border: 1.5px solid ${theme.colors.loginLine};

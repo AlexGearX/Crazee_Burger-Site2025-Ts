@@ -1,8 +1,8 @@
-import styled from "styled-components"
-import BasketHeader from "./BasketHeader/BasketHeader"
-import BasketFooter from "./BasketFooter"
-import { theme } from "../../../../../theme"
-import BasketBody from "./BasketBody/BasketBody"
+import styled from 'styled-components'
+import BasketHeader from './BasketHeader/BasketHeader'
+import BasketFooter from './BasketFooter'
+import { theme } from '../../../../../theme/theme'
+import BasketBody from './BasketBody/BasketBody'
 
 export default function Basket() {
   return (

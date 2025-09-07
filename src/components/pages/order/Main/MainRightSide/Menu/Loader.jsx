@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { theme } from "../../../../../../theme"
+import styled from 'styled-components'
+import { theme } from '../../../../../../theme/theme'
 
 export default function Loader() {
   return (
@@ -19,7 +19,7 @@ const LoaderStyled = styled.div`
 
   .title {
     text-align: center;
-    font-family: "Amatic SC", cursive;
+    font-family: 'Amatic SC', cursive;
     color: ${theme.colors.greyBlue};
     font-size: ${theme.fonts.size.P4};
     font-weight: ${theme.fonts.weights.regular};

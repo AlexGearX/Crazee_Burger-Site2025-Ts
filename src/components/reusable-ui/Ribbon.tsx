@@ -1,7 +1,12 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
+import styled from 'styled-components'
+import { theme } from '../../theme/theme'
 
-export default function Ribbon({ label = "new", className }) {
+type RibbonProps = {
+  label?: string
+  className?: string
+}
+
+export default function Ribbon({ label = 'new', className }: RibbonProps) {
   return (
     <RibbonStyled className={className}>
       <div className="ribbon ribbon-top-left">
@@ -39,7 +44,7 @@ const RibbonStyled = styled.div`
   .ribbon::after {
     position: absolute;
     z-index: 1;
-    content: "";
+    content: '';
     display: block;
     border: 5px solid ${theme.colors.redSecondary};
   }
@@ -51,7 +56,7 @@ const RibbonStyled = styled.div`
     background-color: ${theme.colors.red};
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     color: #fff;
-    font: 700 18px/1 "Lato", sans-serif;
+    font: 700 18px/1 'Lato', sans-serif;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     text-align: center;

@@ -1,8 +1,22 @@
-import styled, { css } from "styled-components"
-import { theme } from "../../theme"
-import Button from "./Button"
-import { TiDelete } from "react-icons/ti"
-import { fadeInFromRight, fadeInFromTop } from "../../theme/animations"
+import styled, { css } from 'styled-components'
+import { theme } from '../../theme/theme'
+import Button from './Button'
+import { TiDelete } from 'react-icons/ti'
+import { fadeInFromRight, fadeInFromTop } from '../../theme/animations'
+
+type CardStyledProps = { isHoverable?: boolean; isSelected?: boolean }
+
+type CardProps = {
+  title?: string
+  imageSource?: string
+  leftDescription: string
+  hasDeleteButton?: boolean
+  onDelete?: React.MouseEventHandler<HTMLButtonElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onAdd?: React.MouseEventHandler<HTMLButtonElement>
+  overlapImageSource: string
+  isOverlapImageVisible?: boolean
+} & CardStyledProps
 
 export default function Card({
   title,
@@ -16,19 +30,14 @@ export default function Card({
   onAdd,
   overlapImageSource,
   isOverlapImageVisible,
-}) {
+}: CardProps) {
   // state (vide)
 
   // comportements (vide)
 
   // affichage
   return (
-    <CardStyled
-      className="produit"
-      onClick={onClick}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
-    >
+    <CardStyled className="produit" onClick={onClick} isHoverable={isHoverable} isSelected={isSelected}>
       <div className="card">
         {hasDeleteButton && (
           <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
@@ -51,12 +60,7 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button
-                className="primary-button"
-                label={"Ajouter"}
-                onClick={onAdd}
-                disabled={isOverlapImageVisible}
-              />
+              <Button className="primary-button" label={'Ajouter'} onClick={onAdd} disabled={isOverlapImageVisible} />
             </div>
           </div>
         </div>
@@ -65,7 +69,7 @@ export default function Card({
   )
 }
 
-const CardStyled = styled.div`
+const CardStyled = styled.div<CardStyledProps>`
   ${({ isHoverable }) => isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
   /* border: 1px solid red; */
@@ -169,7 +173,7 @@ const CardStyled = styled.div`
         overflow: hidden;
         width: 100%;
         text-overflow: ellipsis;
-        font-family: "Amatic SC", cursive;
+        font-family: 'Amatic SC', cursive;
       }
 
       .description {

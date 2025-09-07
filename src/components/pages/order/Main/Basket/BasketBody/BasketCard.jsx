@@ -1,9 +1,9 @@
-import React from "react"
-import styled, { css } from "styled-components"
-import { MdDeleteForever } from "react-icons/md"
-import { theme } from "../../../../../../theme"
-import CasinoEffect from "../../../../../reusable-ui/CasinoEffect"
-import Sticker from "../../../../../reusable-ui/Sticker"
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { MdDeleteForever } from 'react-icons/md'
+import { theme } from '../../../../../../theme/theme'
+import CasinoEffect from '../../../../../reusable-ui/CasinoEffect'
+import Sticker from '../../../../../reusable-ui/Sticker'
 
 export default function BasketCard({
   title,
@@ -42,7 +42,7 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  cursor: ${({ isClickable }) => (isClickable ? "pointer" : "auto")};
+  cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'auto')};
   /* border: 1px solid red; */
   box-sizing: border-box;
   height: 86px;
