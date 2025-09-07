@@ -1,22 +1,22 @@
-import React from "react"
-import styled from "styled-components"
-import { theme } from "../../theme"
+import styled from 'styled-components'
+import { theme } from '../../theme/theme'
+
+type ToggleButtonProps = {
+  isChecked: boolean
+  onToggle: React.ChangeEventHandler<HTMLInputElement>
+  labelIfChecked: string
+  labelIfUnchecked: string
+}
 
 export default function ToggleButton({
   isChecked,
   onToggle,
-  labelIfChecked = "Fermer",
-  labelIfUnchecked = "Ouvrir",
-}) {
+  labelIfChecked = 'Fermer',
+  labelIfUnchecked = 'Ouvrir',
+}: ToggleButtonProps) {
   return (
     <ToggleButtonStyled>
-      <input
-        type="checkbox"
-        className="toggle"
-        id="rounded"
-        checked={isChecked}
-        onChange={onToggle}
-      />
+      <input type="checkbox" className="toggle" id="rounded" checked={isChecked} onChange={onToggle} />
       <label
         htmlFor="rounded"
         className="rounded"
@@ -32,7 +32,7 @@ const ToggleButtonStyled = styled.div`
 
   display: flex;
   margin-right: 10px;
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     // Hides the square box but keeps the core "toggle functionality"
     &.toggle {
       display: none;
@@ -55,7 +55,7 @@ const ToggleButtonStyled = styled.div`
 
     // the small round circle
     &.toggle + label:before {
-      content: "";
+      content: '';
       position: absolute;
       top: 3px;
       height: 30px;
