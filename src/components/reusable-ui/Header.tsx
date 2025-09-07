@@ -1,5 +1,5 @@
+import { theme } from '@/theme/theme'
 import styled from 'styled-components'
-import { theme } from '../../theme'
 
 type HeaderProps = {
   children: React.ReactNode

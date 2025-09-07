@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { theme } from "../../../../../../theme"
+import styled from 'styled-components'
+import { theme } from '../../../../../../theme/theme'
 
 export default function EmptyMenuClient() {
   return (
@@ -23,7 +23,7 @@ const EmptyMenuStyled = styled.div`
   .title,
   .description {
     text-align: center;
-    font-family: "Amatic SC", cursive;
+    font-family: 'Amatic SC', cursive;
     color: ${theme.colors.greyBlue};
   }
 

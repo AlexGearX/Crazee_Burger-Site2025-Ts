@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { theme } from '../../theme'
+import { theme } from '../../theme/theme'
 import { ComponentProps, JSX } from 'react'
 
 type ButtonVersion = keyof typeof extraStyle

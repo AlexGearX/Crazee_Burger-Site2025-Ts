@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
+import { theme } from '../../theme/theme'
 
 type RibbonProps = {
   label?: string
@@ -56,9 +56,7 @@ const RibbonStyled = styled.div`
     background-color: ${theme.colors.red};
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     color: #fff;
-    font:
-      700 18px/1 'Lato',
-      sans-serif;
+    font: 700 18px/1 'Lato', sans-serif;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     text-align: center;

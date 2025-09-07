@@ -1,12 +1,11 @@
-import React from "react"
-import styled from "styled-components"
-import { theme } from "../../../../../../../../theme"
+import React from 'react'
+import styled from 'styled-components'
+import { theme } from '../../../../../../../../theme/theme'
 
 export default function EditInfoMessage() {
   return (
     <EditInfoMessageStyled className="sentence">
-      Cliquer sur un produit du menu pour le modifier{" "}
-      <span className="live-update">en temps réel</span>
+      Cliquer sur un produit du menu pour le modifier <span className="live-update">en temps réel</span>
     </EditInfoMessageStyled>
   )
 }
