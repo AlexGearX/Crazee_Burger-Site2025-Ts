@@ -1,12 +1,12 @@
-import { createContext, useContext, useRef, useState } from "react"
-import { useMenu } from "../hooks/useMenu"
-import { useBasket } from "../hooks/useBasket"
-import { findObjectById } from "../utils/array"
-import { EMPTY_PRODUCT } from "../enums/product"
+import { createContext, useContext, useRef, useState } from 'react'
+import { useMenu } from '../hooks/useMenu'
+import { useBasket } from '../hooks/useBasket'
+import { findObjectById } from '../utils/array'
+import { EMPTY_PRODUCT } from '../constants/product'
 
 // 1. Création du context
 const OrderContext = createContext({
-  username: "",
+  username: '',
   isModeAdmin: false,
   setIsModeAdmin: () => {},
 
@@ -40,7 +40,7 @@ const OrderContext = createContext({
 export const OrderContextProvider = ({ children }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [currentTabSelected, setCurrentTabSelected] = useState("add")
+  const [currentTabSelected, setCurrentTabSelected] = useState('add')
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const titleEditRef = useRef()
@@ -50,7 +50,7 @@ export const OrderContextProvider = ({ children }) => {
   const handleProductSelected = async (idProductClicked) => {
     const productClickedOn = findObjectById(idProductClicked, menu)
     await setIsCollapsed(false)
-    await setCurrentTabSelected("edit")
+    await setCurrentTabSelected('edit')
     await setProductSelected(productClickedOn)
     titleEditRef.current.focus()
   }
