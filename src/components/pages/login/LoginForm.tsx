@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import { authenticateUser } from '@/api/user'
+import Welcome from '@/components/pages/login/Welcome'
+import Button from '@/components/reusable-ui/Button'
+import TextInput from '@/components/reusable-ui/TextInput'
+import { theme } from '@/theme/theme'
+import { useState } from 'react'
+import { BsPersonCircle } from 'react-icons/bs'
+import { IoChevronForward } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { IoChevronForward } from 'react-icons/io5'
-import { BsPersonCircle } from 'react-icons/bs'
-import TextInput from '../../reusable-ui/TextInput'
-import Button from '../../reusable-ui/Button'
-import { theme } from '../../../theme/theme'
-import { authenticateUser } from '../../../api/user'
-import Welcome from './Welcome'
 
 export default function LoginForm() {
   // state
@@ -15,7 +15,7 @@ export default function LoginForm() {
   const navigate = useNavigate()
 
   // comportements
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const userReceived = await authenticateUser(username)
@@ -24,7 +24,7 @@ export default function LoginForm() {
     navigate(`order/${userReceived.username}`)
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value)
   }
 
