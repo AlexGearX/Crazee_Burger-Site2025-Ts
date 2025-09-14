@@ -1,19 +1,19 @@
-import styled from "styled-components"
-import Profile from "./Profile"
-import ToggleButton from "../../../reusable-ui/ToggleButton"
-import ToastAdmin from "./ToastAdmin"
-import { toast } from "react-toastify"
-import { useOrderContext } from "../../../../context/OrderContext"
+import Profile from '@/components/pages/order/Navbar/Profile'
+import ToastAdmin from '@/components/pages/order/Navbar/ToastAdmin'
+import ToggleButton from '@/components/reusable-ui/ToggleButton'
+import { useOrderContext } from '@/context/OrderContext'
+import { toast } from 'react-toastify'
+import styled from 'styled-components'
 
 export default function NavbarRightSide() {
   const { isModeAdmin, setIsModeAdmin } = useOrderContext()
 
   const displayToastNotification = () => {
     if (!isModeAdmin) {
-      toast.info("Mode admin activé", {
+      toast.info('Mode admin activé', {
         // icon: <FaUserSecret size={30} />,
-        theme: "dark",
-        position: "bottom-right",
+        theme: 'dark',
+        position: 'bottom-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,

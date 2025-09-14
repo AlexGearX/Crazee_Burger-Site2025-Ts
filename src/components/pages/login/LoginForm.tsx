@@ -11,7 +11,7 @@ import styled from 'styled-components'
 
 export default function LoginForm() {
   // state
-  const [username, setUsername] = useState('Bob')
+  const [username, setUsername] = useState<string>('Bob')
   const navigate = useNavigate()
 
   // comportements
