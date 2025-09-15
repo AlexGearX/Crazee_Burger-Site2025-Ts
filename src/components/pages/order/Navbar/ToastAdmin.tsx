@@ -1,7 +1,7 @@
+import { theme } from '@/theme/theme'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import styled from 'styled-components'
-import { theme } from '../../../../theme/theme'
 
 export default function ToastAdmin() {
   return (

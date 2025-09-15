@@ -3,7 +3,7 @@ import { theme } from '../../theme/theme'
 
 type LogoProps = {
   className?: string
-  onClick?: () => React.MouseEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
 export default function Logo({ className, onClick }: LogoProps) {

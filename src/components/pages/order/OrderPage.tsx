@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { theme } from '../../../theme/theme'
-import Main from './Main/Main'
-import Navbar from './Navbar/Navbar'
-import { initialiseUserSession } from './helpers/initialiseUserSession'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useOrderContext } from '../../../context/OrderContext'
+import { useOrderContext } from '@/context/OrderContext'
+import { initialiseUserSession } from '@/components/pages/order/helpers/initialiseUserSession'
+import Navbar from '@/components/pages/order/Navbar/Navbar'
+import Main from '@/components/pages/order/Main/Main'
+import { theme } from '@/theme/theme'
 
 export default function OrderPage() {
   // state

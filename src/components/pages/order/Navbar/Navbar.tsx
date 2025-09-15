@@ -1,8 +1,8 @@
+import NavbarRightSide from '@/components/pages/order/Navbar/NavbarRightSide'
+import Logo from '@/components/reusable-ui/Logo'
+import { theme } from '@/theme/theme'
+import { refreshPage } from '@/utils/window'
 import styled from 'styled-components'
-import NavbarRightSide from './NavbarRightSide'
-import Logo from '../../../reusable-ui/Logo'
-import { theme } from '../../../../theme/theme'
-import { refreshPage } from '../../../../utils/window'
 
 export default function Navbar() {
   return (
