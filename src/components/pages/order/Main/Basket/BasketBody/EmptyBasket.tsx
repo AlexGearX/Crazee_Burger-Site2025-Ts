@@ -1,9 +1,8 @@
-import React from 'react'
+import { BASKET_MESSAGE } from '@/constants/product'
+import { theme } from '@/theme/theme'
 import styled from 'styled-components'
-import { theme } from '../../../../../../theme/theme'
-import { BASKET_MESSAGE } from '../../../../../../constants/product'
 
-export default function EmptyBasket({ isLoading }) {
+export default function EmptyBasket({ isLoading }: { isLoading: boolean }) {
   return (
     <EmptyBasketStyled>
       <span className="empty-message">{isLoading ? BASKET_MESSAGE.LOADING : BASKET_MESSAGE.EMPTY}</span>
