@@ -1,6 +1,6 @@
-import { CSSTransition } from "react-transition-group"
-import Ribbon from "../../../../../reusable-ui/Ribbon"
-import { css } from "styled-components"
+import { CSSTransition } from 'react-transition-group'
+import { css } from 'styled-components'
+import Ribbon from '@/components/reusable-ui/Ribbon'
 
 export default function RibbonAnimated() {
   return (
