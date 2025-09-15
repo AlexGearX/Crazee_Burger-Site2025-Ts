@@ -1,11 +1,16 @@
 import styled from 'styled-components'
-import { theme } from '../../theme/theme'
+import { theme } from '@/theme/theme'
 import { ComponentProps, JSX } from 'react'
 
-type SelectInputProps = ComponentProps<'select'> & {
-  options: ComponentProps<'option'>[]
-  Icon: JSX.Element
+type Option = {
+  optionValue?: string | number | readonly string[]
+  label: string
 }
+
+type SelectInputProps = {
+  options: Option[]
+  Icon: JSX.Element
+} & ComponentProps<'select'>
 
 export default function SelectInput({
   options,
@@ -20,8 +25,8 @@ export default function SelectInput({
     <SelectInputStyled className={className}>
       {Icon && <div className="icon">{Icon}</div>}
       <select name={name} value={value} onChange={onChange} {...restProps}>
-        {options.map(({ value, label }) => (
-          <option key={label} value={value}>
+        {options.map(({ optionValue, label }) => (
+          <option key={label} value={optionValue}>
             {label}
           </option>
         ))}

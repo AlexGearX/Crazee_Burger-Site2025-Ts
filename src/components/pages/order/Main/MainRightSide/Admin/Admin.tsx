@@ -1,9 +1,9 @@
-import AdminPanel from '@/components/pages/order/Main/MainRightSide/Admin/AdminPanel/AdminPanel'
-import AdminTabs from '@/components/pages/order/Main/MainRightSide/Admin/AdminTabs'
-import { useOrderContext } from '@/context/OrderContext'
-import { fadeInFromBottom } from '@/theme/animations'
-import { theme } from '@/theme/theme'
-import styled from 'styled-components'
+import styled from "styled-components"
+import { useOrderContext } from "@/context/OrderContext"
+import AdminPanel from "./AdminPanel/AdminPanel"
+import AdminTabs from "./AdminTabs"
+import { fadeInFromBottom } from "@/theme/animations"
+import { theme } from "@/theme/theme"
 
 export default function Admin() {
   const { isCollapsed } = useOrderContext()
