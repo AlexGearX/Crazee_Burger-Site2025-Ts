@@ -118,7 +118,7 @@ const LoginFormStyled = styled.form`
     border: 1px solid ${theme.colors.red}40;
     border-radius: ${theme.borderRadius.round};
     margin: 12px 0;
-    padding: 4px 8px;
+    padding: 2px 4px;
     text-align: center;
     gap: 8px;
     display: flex;
@@ -140,7 +140,7 @@ const LoginFormStyled = styled.form`
   }
 
   .input-login {
-    margin: 18px 0;
+    margin: 0 0 0px 0;
   }
 
   .error-space {
