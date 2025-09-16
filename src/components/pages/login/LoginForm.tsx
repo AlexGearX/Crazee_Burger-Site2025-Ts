@@ -4,29 +4,42 @@ import Button from '@/components/reusable-ui/Button'
 import TextInput from '@/components/reusable-ui/TextInput'
 import { spin } from '@/theme/animations'
 import { theme } from '@/theme/theme'
+import { loginSchema } from '../../../../schema/login.schema'
 import { useState } from 'react'
 import { BsPersonCircle } from 'react-icons/bs'
 import { IoChevronForward } from 'react-icons/io5'
 import { LuLoader2 } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { FiAlertTriangle } from 'react-icons/fi'
 
 export default function LoginForm() {
   // state
   const [username, setUsername] = useState<string>('Bob')
+  const [error, setError] = useState<string>('')
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   // comportements
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    setIsLoading(true)
     event.preventDefault()
+    setError('')
+
     try {
-      const userReceived = await authenticateUser(username)
+      const validatedData = loginSchema.parse({ username })
+      setIsLoading(true)
+
+      const userReceived = await authenticateUser(validatedData.username)
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setUsername('')
       navigate(`order/${userReceived.username}`)
     } catch (error) {
-      console.error(error)
+      if (error instanceof Error && 'issues' in error) {
+        const zodError = error as any
+        setError(zodError.issues[0]?.message || 'Erreur de validation')
+      } else {
+        console.error(error)
+        setError('Erreur lors de la connexion')
+      }
     } finally {
       setIsLoading(false)
     }
@@ -34,6 +47,9 @@ export default function LoginForm() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value)
+    if (error) {
+      setError('')
+    }
   }
 
   // affichage
@@ -45,11 +61,19 @@ export default function LoginForm() {
           value={username}
           onChange={handleChange}
           placeholder={'Entrez votre prénom'}
-          required
           Icon={<BsPersonCircle />}
           className="input-login"
           version="normal"
         />
+
+        {error ? (
+          <div className="error-message">
+            {<FiAlertTriangle />}
+            {error}
+          </div>
+        ) : (
+          <div className="error-space"></div>
+        )}
 
         <Button
           label={isLoading ? '' : 'Accéder à mon espace'}
@@ -85,9 +109,42 @@ const LoginFormStyled = styled.form`
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.P4};
   }
+  .error-message {
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P2};
+    font-weight: ${theme.fonts.weights.heavy};
+    font-family: ${theme.fonts.family.stylish};
+    background: linear-gradient(135deg, ${theme.colors.red}45, ${theme.colors.redSecondary}60);
+    border: 1px solid ${theme.colors.red}40;
+    border-radius: ${theme.borderRadius.round};
+    margin: 12px 0;
+    padding: 4px 8px;
+    text-align: center;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    animation: errorPulse 0.3s ease-out;
+  }
+
+  @keyframes errorPulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 
   .input-login {
     margin: 18px 0;
+  }
+
+  .error-space {
+    height: 18px;
   }
 
   .loader {
