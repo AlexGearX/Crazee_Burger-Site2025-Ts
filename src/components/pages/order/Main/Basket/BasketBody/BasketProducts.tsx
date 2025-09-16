@@ -14,6 +14,7 @@ import { MenuProduct } from '@/types/Product'
 export default function BasketProducts() {
   const { basket, isModeAdmin, handleDeleteBasketProduct, menu, handleProductSelected, productSelected } =
     useOrderContext()
+  if (menu === undefined) return
 
   const { username } = useParams()
 
@@ -28,20 +29,11 @@ export default function BasketProducts() {
       : BASKET_MESSAGE.NOT_AVAILABLE
   }
 
-  console.log('basket', basket)
-  const filteredBasket = basket.filter((basketProduct) => {
-    if (menu === undefined) return false
-    const menuProduct = findObjectById(basketProduct.id, menu)
-    if (!menuProduct) return false
-    return convertStringToBoolean(menuProduct.isAvailable)
-  })
-
   return (
     <TransitionGroup component={BasketProductsStyled} className={'transition-group'}>
-      {filteredBasket.map((basketProduct) => {
-        if (menu === undefined) return null
+      {basket.map((basketProduct) => {
         const menuProduct = findObjectById(basketProduct.id, menu)
-        if (!menuProduct) return null
+        if (!menuProduct) return <></>
         return (
           <CSSTransition appear={true} classNames={'animation-basket'} key={basketProduct.id} timeout={300}>
             <div className="card-container">
