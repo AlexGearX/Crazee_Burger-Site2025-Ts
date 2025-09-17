@@ -2,10 +2,12 @@ import { authenticateUser } from '@/api/user'
 import Welcome from '@/components/pages/login/Welcome'
 import Button from '@/components/reusable-ui/Button'
 import TextInput from '@/components/reusable-ui/TextInput'
+import { spin } from '@/theme/animations'
 import { theme } from '@/theme/theme'
 import { useState } from 'react'
 import { BsPersonCircle } from 'react-icons/bs'
 import { IoChevronForward } from 'react-icons/io5'
+import { LuLoader2 } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -13,15 +15,21 @@ export default function LoginForm() {
   // state
   const [username, setUsername] = useState<string>('Bob')
   const navigate = useNavigate()
-
+  const [isLoading, setIsLoading] = useState(false)
   // comportements
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true)
     event.preventDefault()
-
-    const userReceived = await authenticateUser(username)
-
-    setUsername('')
-    navigate(`order/${userReceived.username}`)
+    try {
+      const userReceived = await authenticateUser(username)
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      setUsername('')
+      navigate(`order/${userReceived.username}`)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +51,12 @@ export default function LoginForm() {
           version="normal"
         />
 
-        <Button label={'Accéder à mon espace'} Icon={<IoChevronForward />} />
+        <Button
+          className="button-login"
+          label={isLoading ? '' : 'Accéder à mon espace'}
+          Icon={isLoading ? <LuLoader2 className="loader" /> : <IoChevronForward />}
+          disabled={isLoading}
+        />
       </div>
     </LoginFormStyled>
   )
@@ -74,6 +87,16 @@ const LoginFormStyled = styled.form`
   }
 
   .input-login {
-    margin: 20px 0 18px 0; // must be handled in Parent
+    margin: 18px 0;
+  }
+
+  .button-login {
+    height: 55px;
+  }
+
+  .loader {
+    font-size: ${theme.fonts.size.P2};
+    animation: ${spin} 1s linear infinite;
+    transition: opacity 0.3s ease-in-out;
   }
 `
