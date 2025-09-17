@@ -1,11 +1,14 @@
 import { theme } from '@/theme/theme'
 import styled from 'styled-components'
 
+const FOOTER_MESSAGE = '© 2025 Groovy Burger - Tous droits réservés.'
+const FOOTER_MESSAGE_BY = 'Made with ❤️ by ViDev'
+
 export function LoginFooter() {
   return (
     <LoginFooterStyled>
-      <span>© {new Date().getFullYear()} Groovy Burger - Tous droits réservés.</span>
-      <span>Made with ❤️ by ViDev</span>
+      <span>{FOOTER_MESSAGE}</span>
+      <span>{FOOTER_MESSAGE_BY}</span>
     </LoginFooterStyled>
   )
 }
