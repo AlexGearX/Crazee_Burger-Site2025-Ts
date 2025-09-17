@@ -4,23 +4,25 @@ import styled from 'styled-components'
 
 export function AdminHelper({ isModeAdmin }: { isModeAdmin: boolean }) {
   const [showAdminHelper, setShowAdminHelper] = useState(false)
-  useEffect(() => {
-    if (!isModeAdmin) return
+  const adminHelper = localStorage.getItem('adminHelper')
 
-    const adminHelper = localStorage.getItem('adminHelper')
+  useEffect(() => {
+    if (!isModeAdmin) {
+      setShowAdminHelper(false)
+      return
+    }
+
     if (!adminHelper || adminHelper === 'true') {
       setShowAdminHelper(true)
     }
-  }, [showAdminHelper])
+  }, [isModeAdmin, adminHelper])
 
   const handleHideAdminHelper = () => {
     localStorage.setItem('adminHelper', 'false')
     setShowAdminHelper(false)
   }
 
-  if (!showAdminHelper) return null
-
-  return (
+  return showAdminHelper ? (
     <AdminHelperStyled>
       <span>💡 Pour aller plus vite :</span>
       <ul>
@@ -29,7 +31,7 @@ export function AdminHelper({ isModeAdmin }: { isModeAdmin: boolean }) {
       </ul>
       <button onClick={handleHideAdminHelper}>Ne plus afficher</button>
     </AdminHelperStyled>
-  )
+  ) : null
 }
 
 const AdminHelperStyled = styled.div`
