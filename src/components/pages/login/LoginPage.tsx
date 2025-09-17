@@ -1,3 +1,4 @@
+import { LoginFooter } from '@/components/pages/login/LoginFooter'
 import LoginForm from '@/components/pages/login/LoginForm'
 import Logo from '@/components/reusable-ui/Logo'
 import styled from 'styled-components'
@@ -5,22 +6,28 @@ import styled from 'styled-components'
 export default function LoginPage() {
   return (
     <LoginPageStyled>
-      <Logo className={'logo-login-page'} />
-      <LoginForm />
+      <div className="login-container">
+        <Logo className={'logo-login-page'} />
+        <LoginForm />
+      </div>
+      <LoginFooter />
     </LoginPageStyled>
   )
 }
 
 const LoginPageStyled = styled.div`
+  position: relative;
   height: 100vh;
   display: flex;
+  width: 100vw;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-left: 138px;
 
   ::before {
     content: '';
-    background: url('/images/burger-and-fries-background.jpg') rgba(0, 0, 0, 0.7);
+    background: url('/images/burger-right.jpg') rgba(0, 0, 0, 0.3);
     background-size: cover;
     background-position: center;
     background-blend-mode: darken;
@@ -31,6 +38,12 @@ const LoginPageStyled = styled.div`
     right: 0;
     bottom: 0;
     z-index: -1;
+  }
+
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .logo-login-page {
