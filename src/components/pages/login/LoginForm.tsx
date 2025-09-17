@@ -66,14 +66,7 @@ export default function LoginForm() {
           version="normal"
         />
 
-        {error ? (
-          <div className="error-message">
-            {<FiAlertTriangle />}
-            {error}
-          </div>
-        ) : (
-          <div className="error-space"></div>
-        )}
+        {error ? <div className="error-message">{error}</div> : <div className="error-space"></div>}
 
         <Button
           className="button-login"
@@ -111,21 +104,12 @@ const LoginFormStyled = styled.form`
     font-size: ${theme.fonts.size.P4};
   }
   .error-message {
-    color: ${theme.colors.white};
-    font-size: ${theme.fonts.size.P2};
-    font-weight: ${theme.fonts.weights.heavy};
-    font-family: ${theme.fonts.family.stylish};
-    background: linear-gradient(135deg, ${theme.colors.red}45, ${theme.colors.redSecondary}60);
-    border: 1px solid ${theme.colors.red}40;
-    border-radius: ${theme.borderRadius.round};
-    margin: 12px 0;
-    padding: 2px 4px;
-    text-align: center;
-    gap: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
+    font-family: Open Sans;
+    font-weight: ${theme.fonts.weights.regular};
+    font-size: 16px;
+    margin: 10px 0 18px 0;
+    color: ${theme.colors.red};
+    line-height: 100%;
     animation: errorPulse 0.3s ease-out;
   }
 
