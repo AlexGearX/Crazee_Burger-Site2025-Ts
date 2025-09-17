@@ -18,17 +18,17 @@ export function AdminHelper({ isModeAdmin }: { isModeAdmin: boolean }) {
     setShowAdminHelper(false)
   }
 
+  if (!showAdminHelper) return null
+
   return (
-    showAdminHelper && (
-      <AdminHelperStyled>
-        <span>💡 Pour aller plus vite :</span>
-        <ul>
-          <li>⌘ + j : Toggle "mode" admin</li>
-          <li>⌘ + j : Toggle "panel" admin</li>
-        </ul>
-        <button onClick={handleHideAdminHelper}>Ne plus afficher</button>
-      </AdminHelperStyled>
-    )
+    <AdminHelperStyled>
+      <span>💡 Pour aller plus vite :</span>
+      <ul>
+        <li>⌘ + j : Toggle "mode" admin</li>
+        <li>⌘ + j : Toggle "panel" admin</li>
+      </ul>
+      <button onClick={handleHideAdminHelper}>Ne plus afficher</button>
+    </AdminHelperStyled>
   )
 }
 

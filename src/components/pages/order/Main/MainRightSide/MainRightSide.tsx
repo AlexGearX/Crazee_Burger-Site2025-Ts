@@ -5,13 +5,18 @@ import { theme } from '@/theme/theme'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
+const KEYBOARD_SHORTCUTS = {
+  ADMIN: 'i',
+  PANEL: 'j',
+}
+
 export default function MainRightSide() {
   const { isModeAdmin, setIsModeAdmin, isCollapsed, setIsCollapsed } = useOrderContext()
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'i') handleToggleAdmin()
-      if (event.key === 'j') handleTogglePannel()
+      if (event.key === KEYBOARD_SHORTCUTS.ADMIN) handleToggleAdmin()
+      if (event.key === KEYBOARD_SHORTCUTS.PANEL) handleTogglePannel()
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
