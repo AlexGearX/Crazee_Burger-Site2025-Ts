@@ -4,18 +4,18 @@ import { useOrderContext } from '@/context/OrderContext'
 import { theme } from '@/theme/theme'
 import styled from 'styled-components'
 
-export default function MainRightSide() {
+export default function ProductList() {
   const { isModeAdmin } = useOrderContext()
 
   return (
-    <MainRightSideStyled>
+    <ProductListStyled>
       <Menu />
       {isModeAdmin && <Admin />}
-    </MainRightSideStyled>
+    </ProductListStyled>
   )
 }
 
-const MainRightSideStyled = styled.div`
+const ProductListStyled = styled.div`
   position: relative;
   overflow-y: hidden;
   display: grid;
