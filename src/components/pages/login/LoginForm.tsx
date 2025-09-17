@@ -11,6 +11,8 @@ import { IoChevronForward } from 'react-icons/io5'
 import { LuLoader2 } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { ZodError } from 'zod'
+import ErrorMessage from '@/components/reusable-ui/ErrorMessage'
 
 export default function LoginForm() {
   // state
@@ -21,6 +23,7 @@ export default function LoginForm() {
   // comportements
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (isLoading) return
     setError('')
     try {
       setIsLoading(true)
@@ -38,7 +41,7 @@ export default function LoginForm() {
       navigate(`order/${userReceived.username}`)
     } catch (error) {
       if (error instanceof Error && 'issues' in error) {
-        const zodError = error as any
+        const zodError = error as ZodError
         setError(zodError.issues[0]?.message || 'Erreur de validation')
       } else {
         console.error(error)
@@ -51,10 +54,9 @@ export default function LoginForm() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value)
-    if (error) {
-      setError('')
-    }
   }
+
+  const IconToDisplay = isLoading ? <LuLoader2 className="loader" /> : <IoChevronForward />
 
   // affichage
   return (
@@ -69,15 +71,8 @@ export default function LoginForm() {
           className="input-login"
           version="normal"
         />
-
-        {error ? <div className="error-message">{error}</div> : <div className="error-space"></div>}
-
-        <Button
-          className="button-login"
-          label={isLoading ? '' : 'Accéder à mon espace'}
-          Icon={isLoading ? <LuLoader2 className="loader" /> : <IoChevronForward />}
-          disabled={isLoading}
-        />
+        <ErrorMessage error={error} />
+        <Button className="button-login" label={isLoading ? '' : 'Accéder à mon espace'} Icon={IconToDisplay} />
       </div>
     </LoginFormStyled>
   )
@@ -107,15 +102,6 @@ const LoginFormStyled = styled.form`
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.P4};
   }
-  .error-message {
-    font-family: Open Sans;
-    font-weight: ${theme.fonts.weights.regular};
-    font-size: 16px;
-    margin: 10px 0 18px 0;
-    color: ${theme.colors.red};
-    line-height: 100%;
-    animation: errorPulse 0.3s ease-out;
-  }
 
   @keyframes errorPulse {
     0% {
@@ -132,12 +118,9 @@ const LoginFormStyled = styled.form`
     margin: 0 0 0px 0;
   }
 
-  .error-space {
-    height: 18px;
-  }
-
   .button-login {
     height: 55px;
+    margin: 18px 0 0 0;
   }
 
   .loader {
