@@ -74,6 +74,6 @@ const LoginFormStyled = styled.form`
   }
 
   .input-login {
-    margin: 18px 0; // must be handled in Parent
+    margin: 20px 0 18px 0; // must be handled in Parent
   }
 `
