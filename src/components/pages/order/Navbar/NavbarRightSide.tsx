@@ -1,3 +1,4 @@
+import { AdminHelper } from '@/components/pages/order/Navbar/AdminHelper'
 import Profile from '@/components/pages/order/Navbar/Profile'
 import ToastAdmin from '@/components/pages/order/Navbar/ToastAdmin'
 import ToggleButton from '@/components/reusable-ui/ToggleButton'
@@ -7,7 +8,6 @@ import styled from 'styled-components'
 
 export default function NavbarRightSide() {
   const { isModeAdmin, setIsModeAdmin } = useOrderContext()
-
   const displayToastNotification = () => {
     if (!isModeAdmin) {
       toast.info('Mode admin activé', {
@@ -35,6 +35,7 @@ export default function NavbarRightSide() {
       />
       <Profile />
       <ToastAdmin />
+      <AdminHelper isModeAdmin={isModeAdmin} />
     </NavbarRightSideStyled>
   )
 }
