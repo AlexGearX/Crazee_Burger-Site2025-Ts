@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import { theme } from '@/theme/theme'
-import MainRightSide from '@/components/pages/order/Main/MainRightSide/MainRightSide'
 import Basket from '@/components/pages/order/Main/Basket/Basket'
+import ProductList from '@/components/pages/order/Main/MainRightSide/ProductList'
 
 export default function Main() {
   return (
     <MainStyled>
+      <ProductList />
       <Basket />
-      <MainRightSide />
     </MainStyled>
   )
 }
@@ -21,6 +21,6 @@ const MainStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 
   display: grid;
-  grid-template-columns: 25% 1fr;
+  grid-template-columns: 1fr 25%;
   overflow: hidden;
 `
