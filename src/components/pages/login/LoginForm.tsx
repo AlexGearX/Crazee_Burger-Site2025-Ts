@@ -11,7 +11,6 @@ import { IoChevronForward } from 'react-icons/io5'
 import { LuLoader2 } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { FiAlertTriangle } from 'react-icons/fi'
 
 export default function LoginForm() {
   // state
@@ -23,12 +22,17 @@ export default function LoginForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setError('')
-
     try {
-      const validatedData = loginSchema.parse({ username })
       setIsLoading(true)
+      const validatedData = loginSchema.safeParse({ username })
 
-      const userReceived = await authenticateUser(validatedData.username)
+      if (!validatedData.success) {
+        setError(validatedData.error.issues[0]?.message || 'Erreur de validation')
+        return
+      }
+
+      const userReceived = await authenticateUser(validatedData.data.username)
+
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setUsername('')
       navigate(`order/${userReceived.username}`)
