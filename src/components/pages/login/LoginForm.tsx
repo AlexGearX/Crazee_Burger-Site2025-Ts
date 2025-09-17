@@ -76,6 +76,7 @@ export default function LoginForm() {
         )}
 
         <Button
+          className="button-login"
           label={isLoading ? '' : 'Accéder à mon espace'}
           Icon={isLoading ? <LuLoader2 className="loader" /> : <IoChevronForward />}
           disabled={isLoading}
@@ -147,8 +148,12 @@ const LoginFormStyled = styled.form`
     height: 18px;
   }
 
+  .button-login {
+    height: 55px;
+  }
+
   .loader {
-    font-size: ${theme.fonts.size.P0};
+    font-size: ${theme.fonts.size.P2};
     animation: ${spin} 1s linear infinite;
     transition: opacity 0.3s ease-in-out;
   }
