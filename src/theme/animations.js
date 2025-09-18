@@ -66,45 +66,42 @@ export const adminAnimation = css`
 
 export const basketAnimation = css`
   .animation-basket-appear {
-    .card {
-      transform: translateX(100px);
-      opacity: 0%;
-    }
+    transform: translateX(100px);
+    opacity: 0;
   }
   .animation-basket-appear-active {
-    .card {
-      transition: ${theme.animations.speed.quick};
-      transform: translateX(0px);
-      opacity: 100%;
-    }
+    transition: all ${theme.animations.speed.quick};
+    transform: translateX(0px);
+    opacity: 1;
   }
 
   .animation-basket-enter {
-    .card {
-      transform: translateX(100px);
-      opacity: 0%;
-    }
+    transform: translateX(100px);
+    opacity: 0;
   }
   .animation-basket-enter-active {
-    .card {
-      transition: ${theme.animations.speed.quick};
-      transform: translateX(0px);
-      opacity: 100%;
-    }
+    transition: all ${theme.animations.speed.quick};
+    transform: translateX(0px);
+    opacity: 1;
   }
 
   .animation-basket-exit {
-    .card {
-      transform: translateX(0px);
-      opacity: 100%;
-    }
+    transform: translateX(0px);
+    opacity: 1;
   }
   .animation-basket-exit-active {
-    .card {
-      transform: translateX(-100px);
-      opacity: 0%;
-      transition: ${theme.animations.speed.quick};
-    }
+    transform: translateX(-100px);
+    opacity: 0;
+    transition: all ${theme.animations.speed.quick};
+  }
+`
+
+export const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 `
 
